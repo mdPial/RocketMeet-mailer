@@ -36,7 +36,6 @@ jobs:
           echo "CLIENT_EMAIL=${{secrets.CLIENT_EMAIL}}" >> .env
           echo "AUTH_URI=${{secrets.AUTH_URI}}" >> .env
           echo "AUTH_PROVIDER_X509_CERT_URL=${{secrets.AUTH_PROVIDER_X509_CERT_URL}}" >> .env
-    - run: npm test
     - name: Test Code Linting
       run: npm run lint
     - name: Save Code Linting Report JSON
