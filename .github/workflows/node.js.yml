@@ -1,4 +1,13 @@
-  run-eslint:
+name: ci
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+    run-eslint:
     name: Run ESLint
     runs-on: ubuntu-latest
     steps:
