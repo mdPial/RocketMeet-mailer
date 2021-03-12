@@ -2,12 +2,13 @@ name: ci
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
   test:
+
     runs-on: ubuntu-latest
 
     strategy:
@@ -15,13 +16,13 @@ jobs:
         node-version: [14.x]
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm ci
-      - run: |
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: |
           touch .env
           echo "EMAIL=${{secrets.EMAIL}}" >> .env
           echo "PASSWORD=${{secrets.PASSWORD}}" >> .env
@@ -35,14 +36,26 @@ jobs:
           echo "CLIENT_EMAIL=${{secrets.CLIENT_EMAIL}}" >> .env
           echo "AUTH_URI=${{secrets.AUTH_URI}}" >> .env
           echo "AUTH_PROVIDER_X509_CERT_URL=${{secrets.AUTH_PROVIDER_X509_CERT_URL}}" >> .env
-      - run: npm test
-  eslint:
-    name: eslint
+    - run: npm test
+  run-eslint:
+    name: Run ESLint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - name: eslint
+      - uses: actions/checkout@v2
+      - name: Check ESLint Error
+      	env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.SECRET_KEY }}
         uses: reviewdog/action-eslint@v1
         with:
+          github_token: ${{ secrets.SECRET_KEY }}
+          reporter: github-pr-check
+          fail_on_error: true
+      - name: Check ESLint Review
+      	env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.SECRET_KEY }}
+        uses: reviewdog/action-eslint@v1
+        with:
+          github_token: ${{ secrets.SECRET_KEY }}
           reporter: github-pr-review
           fail_on_error: true
+          
