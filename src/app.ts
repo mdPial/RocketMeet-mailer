@@ -27,3 +27,4 @@ app.use(cors({ origin: corsURL, credentials: true, optionsSuccessStatus: 200 }))
 app.use('/v1', router);
 
 export default app;
+
