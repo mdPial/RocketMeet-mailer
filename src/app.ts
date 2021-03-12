@@ -11,9 +11,7 @@ const expressLogger: HttpLogger = expressPino({ logger });
 
 const app: Application = express();
 
-app.use(helmet());
-
-app.use(cors({ origin: corsURL, credentials: true, optionsSuccessStatus: 200 }));
+app.use(helmet()); app.use(cors({ origin: corsURL, credentials: true, optionsSuccessStatus: 200 }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
