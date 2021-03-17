@@ -15,8 +15,6 @@ jobs:
       run: yarn install
     - name: check src folder
       uses: icrawl/action-eslint@v1
-      with:
-        custom-glob: src
     - name: check tests folder
       uses: icrawl/action-eslint@v1
       with:
