@@ -14,8 +14,8 @@ jobs:
     - name: yarn install
       run: yarn install
     - name: check src folder
+      if: always()
       uses: icrawl/action-eslint@v1
-      if: ${{ success() || failure() }}
     - name: check tests folder
       uses: icrawl/action-eslint@v1
       with:
