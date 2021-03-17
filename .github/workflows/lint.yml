@@ -25,4 +25,6 @@ jobs:
         continue-on-error: true
       - name: Check on failures
         if: steps.check1.outcome != 'success' || steps.check2.outcome != 'success'
-        run: exit 1
+        run: |
+          echo  "Error Occured\ncheck Files Changed Tab"
+          exit 1
