@@ -25,5 +25,6 @@ jobs:
         continue-on-error: true
       - name: Print Results
         if: steps.check1.outcome != 'success' || steps.check2.outcome != 'success'
-        run:
+        run: |
           echo "::error::Please go to Files changed tab to to get the reason to fail OR, click on the > icon of all check"
+          exit 1
