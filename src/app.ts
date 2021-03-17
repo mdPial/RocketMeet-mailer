@@ -1,5 +1,3 @@
-
-
 import cors from 'cors';
 import express, { Application } from 'express';
 import expressPino, { HttpLogger } from 'express-pino-logger';

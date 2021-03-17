@@ -5,3 +5,4 @@ module.exports = {
       '@exmpl/(.*)': '<rootDir>/src/$1',
     },
   };
+  
