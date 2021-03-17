@@ -26,5 +26,4 @@ jobs:
       - name: Print Results
         if: steps.check1.outcome != 'success' || steps.check2.outcome != 'success'
         run:
-          echo "::error::My error message"
-          exit 1
+          echo "::error::Please go to Files changed tab to to get the reason to fail OR, click on the > icon of all check"
