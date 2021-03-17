@@ -14,9 +14,15 @@ jobs:
       - name: yarn install
         run: yarn install
       - name: check src folder
+        id: check1
         uses: icrawl/action-eslint@v1
         continue-on-error: true
       - name: check tests folder
+        id: check2
         uses: icrawl/action-eslint@v1
         with:
           custom-glob: tests
+        continue-on-error: true
+      - name: Check on failures
+        if: steps.check1.outcome != 'success' || steps.check2.outcome != 'success'
+        run: exit 1
