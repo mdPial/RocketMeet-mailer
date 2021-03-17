@@ -5,6 +5,7 @@ jobs:
   eslint:
     name: eslint
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v1
       - name: install node v12
