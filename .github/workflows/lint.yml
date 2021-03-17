@@ -25,4 +25,6 @@ jobs:
         continue-on-error: true
       - name: Print Results
         if: steps.check1.outcome != 'success' || steps.check2.outcome != 'success'
-        run: exit 1
+        run:
+          echo "::error::My error message"
+          exit 1
