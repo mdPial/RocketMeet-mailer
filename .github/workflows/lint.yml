@@ -6,17 +6,17 @@ jobs:
     name: eslint
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: install node v12
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12
-    - name: yarn install
-      run: yarn install
-    - name: check src folder
-      if: ${{ always() }}
-      uses: icrawl/action-eslint@v1
-    - name: check tests folder
-      uses: icrawl/action-eslint@v1
-      with:
-        custom-glob: tests
+      - uses: actions/checkout@v1
+      - name: install node v12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - name: yarn install
+        run: yarn install
+      - name: check src folder
+        uses: icrawl/action-eslint@v1
+      - name: check tests folder
+        if: always()
+        uses: icrawl/action-eslint@v1
+        with:
+          custom-glob: tests
