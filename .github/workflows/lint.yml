@@ -23,6 +23,14 @@ jobs:
         with:
           custom-glob: tests
         continue-on-error: true
+      - name: Set the value
+        id: step_one
+        run: |
+            echo "action_state=yellow" >> $GITHUB_ENV
+      - name: Use the value
+        id: step_two
+        run: |
+            echo "${{ env.action_state }}hello" # This will output 'yellow'
       - name: Check on failures
         if: steps.check1.outcome != 'success' || steps.check2.outcome != 'success'
         run: |
