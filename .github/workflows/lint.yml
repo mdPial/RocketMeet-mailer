@@ -5,7 +5,6 @@ jobs:
   eslint:
     name: eslint
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v1
       - name: install node v12
@@ -16,8 +15,8 @@ jobs:
         run: yarn install
       - name: check src folder
         uses: icrawl/action-eslint@v1
+        continue-on-error: true
       - name: check tests folder
-        if: always()
         uses: icrawl/action-eslint@v1
         with:
           custom-glob: tests
