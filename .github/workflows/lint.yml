@@ -26,5 +26,6 @@ jobs:
       - name: Check on failures
         if: steps.check1.outcome != 'success' || steps.check2.outcome != 'success'
         run: |
-          echo  "Error Occured\ncheck Files Changed Tab"
+          echo '::set-output name=SELECTED_COLOR::green'
+          echo "check Files Changed tab"
           exit 1
